@@ -19,7 +19,7 @@
     return svg;
   };
 
-  // All factual content is copied verbatim from the original project's config.js.
+  // Seller information comes from the supplied partner card via config.js.
   function detail(label, value, { copy = false, numeric = false, href, wide = false } = {}) {
     const node = element('div', `detail${wide ? ' wide' : ''}`);
     const row = element('div', 'detail-value');
@@ -48,13 +48,21 @@
     const s = config.seller;
     $('#seller-content').append(
       detail('ИНН', s.inn, { copy: true, numeric: true }),
-      detail('ОГРНИП', s.ogrnip, { copy: true, numeric: true }),
+      detail('ОГРН', s.ogrn, { copy: true, numeric: true }),
+      detail('КПП', s.kpp, { copy: true, numeric: true }),
+      detail('ОКПО', s.okpo),
       detail('Юридический адрес', s.legalAddress),
-      detail('Почтовый адрес', s.postalAddress),
+      detail('Почтовый / фактический адрес', s.postalAddress),
       detail('Дата регистрации', s.registrationDate),
       detail('ОКВЭД по карте партнёра', s.okved),
-      detail('Телефон', s.phone, { copy: true, href: `tel:${s.phoneLink}` }),
-      detail('Электронная почта', s.email, { copy: true, href: `mailto:${s.email}` })
+      detail('Секретарь / факс', s.phone, { copy: true, href: `tel:${s.phoneLink}` }),
+      detail('Электронная почта', s.email, { copy: true, href: `mailto:${s.email}` }),
+      detail('Генеральный директор — по карте партнёра', s.director),
+      detail('Основание полномочий', s.directorBasis)
+    );
+    $('#registration-content').append(
+      detail('Свидетельство о государственной регистрации — по карте партнёра', s.registrationCertificate),
+      detail('Свидетельство о постановке на налоговый учёт — по карте партнёра', s.taxCertificate)
     );
     const b = s.bank;
     const combined = `Расчётный счёт: ${b.account}\nБанк: ${b.name}\nБИК: ${b.bik}\nКорреспондентский счёт: ${b.correspondentAccount}`;
@@ -98,12 +106,7 @@
 
   // Local page images avoid remote PDF libraries, file:// restrictions and mobile PDF embeds.
   // The unmodified source PDF remains available via both original-file actions.
-  const documents = config.documents.map(doc => ({
-    ...doc,
-    pageImages: doc.type === 'pdf'
-      ? Array.from({ length: doc.pages }, (_, i) => `assets/documents/egrip-page-${i + 1}.png`)
-      : [doc.path]
-  }));
+  const documents = config.documents;
   function renderDocuments() {
     documents.forEach(doc => {
       const button = element('button', 'document-card');
@@ -113,7 +116,7 @@
       const preview = element('span', 'document-thumbnail');
       const img = new Image();
       img.src = doc.thumbnail;
-      img.alt = doc.type === 'pdf' ? 'Первая страница ЕГРИП' : 'Свидетельство ИНН';
+      img.alt = doc.title;
       img.loading = 'lazy';
       img.decoding = 'async';
       preview.append(img);
@@ -121,8 +124,8 @@
       const action = element('span', 'document-open', 'Открыть документ');
       action.append(icon('arrow'));
       text.append(
-        element('span', 'document-meta', doc.type === 'pdf' ? '3 страницы · PDF' : '1 страница · JPG'),
-        element('span', 'document-title', doc.id === 'inn' ? 'ИНН' : 'ЕГРИП'),
+        element('span', 'document-meta', `${doc.pageImages.length} страница · ${doc.type === 'pdf' ? 'PDF' : 'JPG'}`),
+        element('span', 'document-title', doc.shortTitle),
         element('span', 'document-description', doc.title), action
       );
       button.append(preview, text);
@@ -157,7 +160,7 @@
       button.focus({ preventScroll: true });
       if (!copied) { toast('Не удалось скопировать. Выделите значение вручную.'); return; }
     }
-    const labels = { 'ИНН': 'ИНН скопирован', 'ОГРНИП': 'ОГРНИП скопирован', 'Электронная почта': 'Email скопирован', 'Все банковские реквизиты': 'Банковские реквизиты скопированы' };
+    const labels = { 'ИНН': 'ИНН скопирован', 'ОГРН': 'ОГРН скопирован', 'КПП': 'КПП скопирован', 'Секретарь / факс': 'Телефон скопирован', 'Электронная почта': 'Email скопирован', 'Все банковские реквизиты': 'Банковские реквизиты скопированы' };
     toast(labels[button.dataset.label] || `${button.dataset.label} скопирован`);
   }
   document.addEventListener('click', event => {
@@ -237,7 +240,7 @@
     viewer.lastFocus = document.activeElement;
     viewer.originalOverflow = document.body.style.overflow;
     viewer.doc = doc;
-    $('#modal-title').textContent = doc.id === 'inn' ? 'Свидетельство ИНН' : doc.title;
+    $('#modal-title').textContent = `Свидетельство · ${doc.type === 'pdf' ? 'PDF' : 'JPG'}`;
     ['#modal-download', '#modal-new', '#error-original'].forEach(id => { $(id).href = doc.path; });
     modal.showModal();
     document.body.style.overflow = 'hidden';

@@ -1,39 +1,95 @@
-/**
- * Все сведения, которые могут меняться, собраны в этом файле.
- * Сохраняйте кавычки и запятые при редактировании значений.
- */
+/** Сведения из предоставленной карты партнёра ООО «Уютайм». */
 window.SITE_CONFIG = {
-  seller: {
-    fullName: "Индивидуальный предприниматель Куприянова Ольга Владимировна",
-    shortName: "ИП Куприянова О.В.",
-    legalAddress: "Россия, 305512, Курская область, Курский район, посёлок Камыши, дом 29, квартира 11",
-    postalAddress: "Россия, 400075, г. Волгоград, шоссе Авиаторов, д. 9",
-    ogrnip: "323460000052391",
-    inn: "344309962847",
-    registrationDate: "13.12.2023",
-    okved: "46.44",
-    phone: "+78442549810",
-    phoneLink: "+78442549810",
-    email: "VR-SKLAD-OLGA@MAIL.RU",
-    bank: {
-      account: "40802810111000068159",
-      name: "Волгоградское отделение № 8621 ПАО Сбербанк",
-      bik: "041806647",
-      correspondentAccount: "30101810100000000647"
+  "seller": {
+    "fullName": "Общество с ограниченной ответственностью «Уютайм»",
+    "shortName": "ООО «Уютайм»",
+    "legalAddress": "Россия, 400074, г. Волгоград, ул. Козловская, 34Б",
+    "postalAddress": "Россия, 400074, г. Волгоград, ул. Козловская, 34Б",
+    "ogrn": "1093460005055",
+    "inn": "3445106455",
+    "kpp": "344501001",
+    "registrationDate": "20.10.2009",
+    "okved": "47.59.2",
+    "okpo": "62597468",
+    "registrationCertificate": "Серия 34 № 003423244, выдано МИФНС России № 10 по Волгоградской области 20.10.2009 г.",
+    "taxCertificate": "Серия 34 № 003421589, выдано МИФНС России № 10 по Волгоградской области 20.10.2009 г.",
+    "director": "Кирьянова Ирина Юрьева",
+    "directorBasis": "Действует на основании Устава",
+    "phone": "+7 (8442) 49-25-39",
+    "phoneLink": "+78442492539",
+    "email": "Info.uytime@mail.ru",
+    "bank": {
+      "account": "40702810311000043029",
+      "name": "Волгоградское отделение № 8621 ПАО Сбербанк г. Волгоград",
+      "bik": "041806647",
+      "correspondentAccount": "30101810100000000647"
     }
   },
-  schedule: { days: "Понедельник — воскресенье", open: "09:00", close: "20:00", note: "Без перерывов и выходных", timeZone: "Europe/Volgograd" },
-  documents: [
-    { id: "inn", title: "Свидетельство о постановке на налоговый учёт (ИНН)", type: "image", path: "assets/documents/ИНН Куприянова.jpg", thumbnail: "assets/documents/inn-thumb.jpg", available: true },
-    { id: "egrip", title: "Лист записи ЕГРИП", type: "pdf", path: "assets/documents/ЕГРИП.pdf", thumbnail: "assets/documents/egrip-thumb.jpg", pages: 3, available: true },
+  "schedule": {
+    "days": "Понедельник — воскресенье",
+    "open": "09:00",
+    "close": "20:00",
+    "note": "Без перерывов и выходных",
+    "timeZone": "Europe/Volgograd"
+  },
+  "documents": [
+    {
+      "id": "inn",
+      "shortTitle": "ИНН",
+      "title": "Свидетельство о постановке на налоговый учёт",
+      "type": "pdf",
+      "path": "assets/documents/ИНН.pdf",
+      "thumbnail": "assets/documents/uyutime-inn-thumb.jpg",
+      "pageImages": [
+        "assets/documents/uyutime-inn-page-1.png"
+      ],
+      "available": true
+    },
+    {
+      "id": "tax-image",
+      "shortTitle": "ИНН / КПП",
+      "title": "Свидетельство о постановке на налоговый учёт · файл «ОГРН.JPG»",
+      "type": "image",
+      "path": "assets/documents/ОГРН.JPG",
+      "thumbnail": "assets/documents/uyutime-tax-thumb.jpg",
+      "pageImages": [
+        "assets/documents/ОГРН.JPG"
+      ],
+      "available": true
+    }
   ],
-  emergencyPhones: [
-    { name: "Пожарная охрана", number: "101" }, { name: "Полиция", number: "102" },
-    { name: "Скорая помощь", number: "103" }, { name: "Аварийная газовая служба", number: "104" },
-    { name: "Единый номер экстренных служб", number: "112" }
+  "emergencyPhones": [
+    {
+      "name": "Пожарная охрана",
+      "number": "101"
+    },
+    {
+      "name": "Полиция",
+      "number": "102"
+    },
+    {
+      "name": "Скорая помощь",
+      "number": "103"
+    },
+    {
+      "name": "Аварийная газовая служба",
+      "number": "104"
+    },
+    {
+      "name": "Единый номер экстренных служб",
+      "number": "112"
+    }
   ],
-  authorityPhones: [
-    { name: "Комитет по защите прав потребителей по Волгоградской области", number: "(8442) 24-36-30", tel: "+78442243630" },
-    { name: "ИФНС по Волгоградской области", number: "8-800-222-2222", tel: "+78002222222" }
+  "authorityPhones": [
+    {
+      "name": "Комитет по защите прав потребителей по Волгоградской области",
+      "number": "(8442) 24-36-30",
+      "tel": "+78442243630"
+    },
+    {
+      "name": "ИФНС по Волгоградской области",
+      "number": "8-800-222-2222",
+      "tel": "+78002222222"
+    }
   ]
 };
