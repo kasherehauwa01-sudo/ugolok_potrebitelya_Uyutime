@@ -107,6 +107,7 @@
   // Local page images avoid remote PDF libraries, file:// restrictions and mobile PDF embeds.
   // The unmodified source PDF remains available via both original-file actions.
   const documents = config.documents;
+  const pageWord = count => count % 100 >= 11 && count % 100 <= 14 ? 'страниц' : count % 10 === 1 ? 'страница' : count % 10 >= 2 && count % 10 <= 4 ? 'страницы' : 'страниц';
   function renderDocuments() {
     documents.forEach(doc => {
       const button = element('button', 'document-card');
@@ -124,7 +125,7 @@
       const action = element('span', 'document-open', 'Открыть документ');
       action.append(icon('arrow'));
       text.append(
-        element('span', 'document-meta', `${doc.pageImages.length} страница · ${doc.type === 'pdf' ? 'PDF' : 'JPG'}`),
+        element('span', 'document-meta', `${doc.pageImages.length} ${pageWord(doc.pageImages.length)} · ${doc.type === 'pdf' ? 'PDF' : 'JPG'}`),
         element('span', 'document-title', doc.shortTitle),
         element('span', 'document-description', doc.title), action
       );
@@ -240,7 +241,7 @@
     viewer.lastFocus = document.activeElement;
     viewer.originalOverflow = document.body.style.overflow;
     viewer.doc = doc;
-    $('#modal-title').textContent = `Свидетельство · ${doc.type === 'pdf' ? 'PDF' : 'JPG'}`;
+    $('#modal-title').textContent = doc.shortTitle;
     ['#modal-download', '#modal-new', '#error-original'].forEach(id => { $(id).href = doc.path; });
     modal.showModal();
     document.body.style.overflow = 'hidden';

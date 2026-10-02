@@ -309,3 +309,10 @@ body[data-open="false"] .status-dot { background: var(--text-muted); box-shadow:
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Single register extract and store identity. */
+.store-title { font-size: clamp(2.4rem, 8.5vw, 4.6rem); }
+.document-grid-single { grid-template-columns: minmax(0, 1fr); max-width: 680px; }
+.document-grid-single .document-description { max-width: 360px; }
+
+.store-title { margin-bottom: 24px; }

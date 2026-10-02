@@ -34,26 +34,26 @@ window.SITE_CONFIG = {
   },
   "documents": [
     {
-      "id": "inn",
-      "shortTitle": "ИНН",
-      "title": "Свидетельство о постановке на налоговый учёт",
+      "id": "egrul",
+      "shortTitle": "ЕГРЮЛ",
+      "title": "Выписка из Единого государственного реестра юридических лиц — ООО «Уютайм»",
       "type": "pdf",
-      "path": "assets/documents/ИНН.pdf",
-      "thumbnail": "assets/documents/uyutime-inn-thumb.jpg",
+      "path": "assets/documents/выписка ЕГРЮЛ Уютайм.pdf",
+      "thumbnail": "assets/documents/egrul-thumb.jpg",
       "pageImages": [
-        "assets/documents/uyutime-inn-page-1.png"
-      ],
-      "available": true
-    },
-    {
-      "id": "tax-image",
-      "shortTitle": "ИНН / КПП",
-      "title": "Свидетельство о постановке на налоговый учёт · файл «ОГРН.JPG»",
-      "type": "image",
-      "path": "assets/documents/ОГРН.JPG",
-      "thumbnail": "assets/documents/uyutime-tax-thumb.jpg",
-      "pageImages": [
-        "assets/documents/ОГРН.JPG"
+        "assets/documents/egrul-page-1.png",
+        "assets/documents/egrul-page-2.png",
+        "assets/documents/egrul-page-3.png",
+        "assets/documents/egrul-page-4.png",
+        "assets/documents/egrul-page-5.png",
+        "assets/documents/egrul-page-6.png",
+        "assets/documents/egrul-page-7.png",
+        "assets/documents/egrul-page-8.png",
+        "assets/documents/egrul-page-9.png",
+        "assets/documents/egrul-page-10.png",
+        "assets/documents/egrul-page-11.png",
+        "assets/documents/egrul-page-12.png",
+        "assets/documents/egrul-page-13.png"
       ],
       "available": true
     }
